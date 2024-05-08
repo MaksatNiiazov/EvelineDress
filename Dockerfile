@@ -4,8 +4,8 @@ ENV APP_HOME /app
 
 WORKDIR $APP_HOME
 
-COPY requirements/dev.txt .
+COPY requirements.txt .
 
-RUN pip install -r dev.txt
+RUN pip install -r requirements.txt
 
 COPY . .
