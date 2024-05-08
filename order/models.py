@@ -26,7 +26,7 @@ class Order(models.Model):
 
 
 class TelegramSettings(SingletonModel):
-    link = models.CharField(max_length=255, verbose_name=_('Cсылка'))
+    link = models.CharField(max_length=255, verbose_name=_('Cсылка'), help_text=_('Никнейм в телеграм'))
 
     class Meta:
         verbose_name = 'Telegram Settings'
@@ -37,7 +37,7 @@ class TelegramSettings(SingletonModel):
 
 
 class WhatsAppSettings(models.Model):
-    phone_number = models.CharField(max_length=20, verbose_name='Номер телефона')
+    phone_number = models.CharField(max_length=20, verbose_name=_('Номер телефона'), help_text=_('Номер телефона с кодом страны') )
 
     class Meta:
         verbose_name = 'WhatsApp Settings'

@@ -140,7 +140,7 @@ SIMPLEUI_DEFAULT_THEME = 'simpleui.css'
 SIMPLEUI_INDEX = '#'
 # SIMPLEUI_LOGO = '/assets/mainpage/logo.png'
 SIMPLEUI_CONFIG = {
-    'system_keep': True,
+    'system_keep': False,
     'menus': [
         {
             'name': 'Каталог',
@@ -229,6 +229,36 @@ SIMPLEUI_CONFIG = {
                             'icon': 'fa fa-clock',
                             'url': '/admin/shop/workschedule/'
                         },
+                    ]
+                },
+
+            ]
+        },
+        {
+            'name': 'Заказы',
+            'icon': 'fa fa-star',
+            'models': [
+                {
+                    'name': 'Заказы',
+                    'icon': 'fa fa-star',
+                    'url': '/admin/shop/mainpagemodel/'
+                },
+                {
+                    'name': 'Месенджеры',
+                    'icon': 'fa fa-circle-info',
+                    'models': [
+                        {
+                            'name': 'Телеграм',
+                            'icon': 'fa fa-telegram',
+                            'url': '/admin/order/telegramsettings/'
+                        },
+                        {
+                            'name': 'WhatsApp',
+                            'icon': 'fa fa-whatsapp',
+                            'url': '/admin/order/whatsappsettings/'
+                        },
+
+
                     ]
                 },
 
