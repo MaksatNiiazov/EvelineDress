@@ -2,8 +2,8 @@ from django.conf import settings
 from django.core.files import File
 import os
 
-from shop.models import MainPageSlide, AdvantageModel, ReviewModel, WholesalerInfo, WholesalerProduct, PaymentInfo, \
-    DeliveryInfo
+from shop.models import MainPageSlide, AdvantageModel, ReviewModel, WholesalerProduct, SocialLink, Address, \
+    WorkSchedule, Phone
 
 
 def create_main_page_data(main_page):
@@ -20,6 +20,9 @@ def create_main_page_data(main_page):
     Решила открыть свой магазин вечерних платьев как из Pinterest
     На сегодняшний день, мы сшили более 2 000 роскошных нарядов 
     '''
+    main_page.bestsellers_tittle = 'Наши бестселлеры'
+    main_page.discount_tittle = 'Скидки'
+    main_page.all_products_title = 'Все платья'
     content_image_path = 'asets/mainpage/content_image.png'
     with open(os.path.join(settings.BASE_DIR, content_image_path), 'rb') as content_image_file:
         main_page.content_image.save(os.path.basename(content_image_path), File(content_image_file), save=True)
@@ -117,3 +120,61 @@ def create_payment_info_data(payment_info):
 def create_delivery_info_data(delivery_info):
     delivery_info.title = 'Доставка и возврат'
     delivery_info.text = 'Доставка в другие страны осуществляются через курьерскую службу СДЭК   Наземная доставка в течении 2-4 недель 1000 руб  Авиа доставка в течении 3-6 рабочих дней 3000 руб За доставку оплачиваете сразу нам  После оплаты мы в течении дня отправляем трек, где вы можете отследить свой заказ  https://www.cdek.ru/ru ( отследить можете через этот сайт )  Внимание! Перед тем как оплатить за пять минут ещё раз удостоверьтесь что в наличии есть ли платья ( так как платье могут купить даже за пять минут пока вы думаете )'
+
+
+
+def create_social_link_data(contact_info):
+    social_links_data = [
+        {
+            'name': 'WhatsApp',
+            'logo': 'asets/sociallinks/whatsapp.svg',
+            'url': ''
+        },
+        {
+            'name': 'Instagram',
+            'logo': 'asets/sociallinks/instagram.svg',
+            'url': ''
+        },
+        {
+            'name': 'TikTok',
+            'logo': 'asets/sociallinks/tiktok.svg',
+            'url': ''
+        },
+        {
+            'name': 'Telegram',
+            'logo': 'asets/sociallinks/telegram.svg',
+            'url': ''
+        },
+
+    ]
+    social_links = []
+    for data in social_links_data:
+        try:
+            logo_path = os.path.join(settings.BASE_DIR, data['logo'])
+            with open(logo_path, 'rb') as image_file:
+                social_link = SocialLink(
+                    contact_info=contact_info,
+                    name=data['name'],
+                    url=data['url']
+                )
+                social_link.logo.save(os.path.basename(data['logo']), File(image_file), save=True)
+                social_links.append(social_link)
+        except Exception as e:
+            print(f"Error creating social link: {e}")
+    return social_links
+
+
+def create_contact_info_data(contact_info):
+    addresses = Address.objects.all()
+    if not addresses:
+        Address.objects.create(contact_info=contact_info, address='Адрес: ул. Киевская 62, ТЦ “Евразия”'
+                                                                              ' 3 этаж, бутик COLLAB')
+    work_schedules = WorkSchedule.objects.all()
+    if not work_schedules:
+        WorkSchedule.objects.create(contact_info=contact_info)
+    phones = Phone.objects.all()
+    if not phones:
+         Phone.objects.create(contact_info=contact_info, phone='Для заказа WhatsApp: +996 (502) 431-428')
+    social_links = SocialLink.objects.all()
+    if not social_links:
+        create_social_link_data(contact_info)

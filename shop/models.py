@@ -1,3 +1,5 @@
+from datetime import time
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -36,6 +38,9 @@ class MainPageModel(SingletonModel):
     content_text = models.TextField(blank=True, null=True, verbose_name=_('Текст'))
     content_image = models.ImageField(upload_to='main_page', blank=True, null=True,
                                       default='asets/mainpage/content_image.png', verbose_name=_('Изображение'))
+    bestsellers_tittle = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Бестселлеры заголовок'))
+    discount_tittle = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Скидки заголовок'))
+    all_products_title = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Все товары заголовок'))
 
     class Meta:
         verbose_name = 'Контент главной страницы'
@@ -160,8 +165,8 @@ class WorkSchedule(models.Model):
     contact_info = models.ForeignKey(ContactInfo, on_delete=models.PROTECT, related_name='work_schedules')
     text = models.CharField(max_length=255, blank=True, null=True, help_text='Дни когда это время актуально (можно '
                                                                              'оставить пустым)')
-    start = models.TimeField()
-    end = models.TimeField()
+    start = models.TimeField(default=time(10, 0, 0).replace(second=0, microsecond=0))
+    end = models.TimeField(default=time(10, 0, 0).replace(second=0, microsecond=0))
 
     class Meta:
         verbose_name = 'Рабочее время'
@@ -171,10 +176,6 @@ class WorkSchedule(models.Model):
 class Phone(models.Model):
     contact_info = models.ForeignKey(ContactInfo, on_delete=models.PROTECT, related_name='phones')
     phone = models.CharField(max_length=255, verbose_name=_('Телефон'))
-    text = models.CharField(max_length=255, blank=True, null=True, help_text='Дополнительная информация, если такая '
-                                                                             'имеется. Например: (Телеграмм. / Вотсап.'
-                                                                             ' / Звонить только в рабочее время.))',
-                            verbose_name=_('Текст'))
 
     class Meta:
         verbose_name = 'Телефон'
@@ -185,6 +186,7 @@ class SocialLink(models.Model):
     contact_info = models.ForeignKey(ContactInfo, on_delete=models.PROTECT, related_name='social_links')
     name = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Соцсети'))
     logo = models.FileField(upload_to='social_link_logo', blank=True, null=True, verbose_name=_('Логотип'))
+    url = models.URLField(blank=True, null=True, verbose_name=_('Ссылка'))
 
     class Meta:
         verbose_name = 'Соцсеть'

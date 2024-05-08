@@ -15,7 +15,7 @@ class MainPageSerializer(serializers.ModelSerializer):
     class Meta:
         model = MainPageModel
         fields = ('id', 'keywords', 'meta_title', 'meta_description', 'meta_image', 'title1', 'title2', 'title3',
-                  'content_title', 'content_text', 'content_image', 'slides')
+                  'content_title', 'content_text', 'bestsellers_tittle', 'discount_tittle', 'all_products_title', 'content_image', 'slides')
 
 
 class AdvantageModelSerializer(serializers.ModelSerializer):

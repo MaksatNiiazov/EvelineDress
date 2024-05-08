@@ -1,17 +1,16 @@
-from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from shop.api.utils import create_main_page_data, create_main_page_slides, create_about_page_data, \
-    create_wholesaler_info_data, create_payment_info_data, create_delivery_info_data
+    create_wholesaler_info_data, create_payment_info_data, create_delivery_info_data, \
+    create_contact_info_data
 from shop.models import MainPageModel, MainPageSlide, AboutPageModel, PaymentInfo, WholesalerInfo, DeliveryInfo, \
-    ContactInfo, Address, WorkSchedule, SocialLink, Phone
+    ContactInfo
 from shop.api.serializers import MainPageSerializer, MainPageSlideSerializer, AboutPageModelSerializer, \
-    PaymentInfoSerializer, DeliveryInfoSerializer, WholesalerInfoSerializer, ContactInfoSerializer, AddressSerializer, \
-    WorkScheduleSerializer, PhoneSerializer, SocialLinkSerializer
+    PaymentInfoSerializer, DeliveryInfoSerializer, WholesalerInfoSerializer, ContactInfoSerializer
 
 
 class MainPageAPIView(APIView):
-    def get(self, request, format=None):
+    def get(self, request):
         main_page, created = MainPageModel.objects.get_or_create(pk=1)
 
         if created:
@@ -35,7 +34,7 @@ class MainPageAPIView(APIView):
 
 
 class AboutPageAPIView(APIView):
-    def get(self, request, format=None):
+    def get(self, request):
         about_page, created = AboutPageModel.objects.get_or_create(pk=1)
         if created:
             create_about_page_data(about_page)
@@ -47,7 +46,7 @@ class AboutPageAPIView(APIView):
 
 
 class InfoPageAPIView(APIView):
-    def get(self, request, format=None):
+    def get(self, request):
         wholesaler_info, created = WholesalerInfo.objects.get_or_create(pk=1)
         if created:
             create_wholesaler_info_data(wholesaler_info)
@@ -74,29 +73,15 @@ class InfoPageAPIView(APIView):
         })
 
 
-class ContactInfoAPIView(generics.ListAPIView):
-    queryset = ContactInfo.objects.all()
-    serializer_class = ContactInfoSerializer
+class ContactInfoAPIView(APIView):
+    def get(self, request):
+        contact_info, created = ContactInfo.objects.get_or_create(pk=1)
+        if not contact_info:
+            create_contact_info_data(contact_info)
+        contact_info.save()
 
-    def get_queryset(self):
-        contact_info = ContactInfo.objects.all()
-        addresses = Address.objects.all()
-        work_schedules = WorkSchedule.objects.all()
-        phones = Phone.objects.all()
-        social_links = SocialLink.objects.all()
+        serializer = ContactInfoSerializer(contact_info,  context={'request': request})
 
-        return {
-            'contact_info': contact_info,
-            'addresses': addresses,
-            'work_schedules': work_schedules,
-            'phones': phones,
-            'social_links': social_links,
-        }
-
-    def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        serializer = {
-            'contact_info': ContactInfoSerializer(queryset['contact_info'], many=True).data,
-
-        }
-        return Response(serializer)
+        return Response({
+            'contact_info': serializer.data,
+        })

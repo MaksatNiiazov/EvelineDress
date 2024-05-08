@@ -56,7 +56,7 @@ class SocialLinkInline(admin.TabularInline):
 @admin.register(MainPageModel)
 class MainPageModelAdmin(admin.ModelAdmin):
     inlines = [MainPageSlideInline]
-    list_display = ['title1', 'title2', 'title3', 'content_title', 'content_text', 'content_image']
+    list_display = ['title1', 'title2', 'title3',]
     readonly_fields = ("get_media",)
 
     def get_media(self, obj):
