@@ -30,7 +30,7 @@ class CharacteristicInline(NestedStackedInline):
 
 class ProductAdmin(NestedModelAdmin):
     inlines = [VariantInline, CharacteristicInline]
-    list_display = ('name', 'price',)
+    list_display = ('name', 'price', 'is_active')
     search_fields = ['name']
     filter_horizontal = ['tags']
 
@@ -38,7 +38,7 @@ class ProductAdmin(NestedModelAdmin):
         return f"{obj.price_kgs} KGS, {obj.price_kzt} KZT, {obj.price_rub} RUB, {obj.price_usd} USD"
 
     fieldsets = [
-        ('Main Information', {'fields': ['name', 'is_new', 'is_top', 'description', 'tags', 'price_kgs', 'price_kzt',
+        ('Main Information', {'fields': ['is_active', 'name', 'is_new', 'is_top', 'description', 'tags', 'price_kgs', 'price_kzt',
                                          'price_rub', 'price_usd', 'price_discounted_kgs', 'price_discounted_kzt',
                                          'price_discounted_rub', 'price_discounted_usd']}),
         ('SEO Information', {'fields': ['keywords', 'meta_title', 'meta_description'], 'classes': ['collapse']}),

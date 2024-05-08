@@ -3,15 +3,11 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Product(models.Model):
-    keywords = models.CharField(max_length=255, blank=True, null=True)
-    meta_title = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Мета-заголовок'))
-    meta_description = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Мета-описание'))
-    meta_image = models.FileField(upload_to='meta_images', blank=True, null=True, default='assets/icons/LOGO.svg')
 
     name = models.CharField(max_length=255, verbose_name=_('Продукт'))
     description = models.TextField(blank=True, null=True, verbose_name='Описание')
-    tags = models.ManyToManyField('Tag', related_name='products')
-
+    tags = models.ManyToManyField('Tag', related_name='products', blank=True, null=True, verbose_name=_('Тэги'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Активность'))
     price_kgs = models.PositiveIntegerField(verbose_name=_('Цена в сомах'))
     price_kzt = models.PositiveIntegerField(verbose_name=_('Цена в тенге'))
     price_rub = models.PositiveIntegerField(verbose_name=_('Цена в рублях'))
@@ -23,12 +19,17 @@ class Product(models.Model):
     is_top = models.BooleanField(default=False)
     is_new = models.BooleanField(default=False)
 
+    keywords = models.CharField(max_length=255, blank=True, null=True)
+    meta_title = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Мета-заголовок'))
+    meta_description = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Мета-описание'))
+    meta_image = models.FileField(upload_to='meta_images', blank=True, null=True, default='assets/icons/logo.png')
+
 
 
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
-
+        ordering = ['-is_active']
     def __str__(self):
         return f'{self.name} - {self.price_kgs}с.'
 
