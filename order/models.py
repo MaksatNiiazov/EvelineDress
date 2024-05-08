@@ -26,7 +26,7 @@ class Order(models.Model):
 
 
 class TelegramSettings(SingletonModel):
-    link = models.CharField(max_length=255, verbose_name=_('Cсылка'), help_text=_('Никнейм в телеграм'))
+    link = models.CharField(max_length=255, verbose_name=_('Cсылка'), help_text=_('Никнейм в телеграм (то что идет после @ )'))
 
     class Meta:
         verbose_name = 'Telegram Settings'
