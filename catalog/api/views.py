@@ -8,7 +8,7 @@ from catalog.api.serializers import ProductListSerializer, ProductSerializer
 
 
 class ProductList(generics.ListAPIView):
-    queryset = Product.objects.all()
+    queryset = Product.objects.all().order_by('?')
     serializer_class = ProductListSerializer
     pagination_class = ProductPagination
     filter_backends = [DjangoFilterBackend]
