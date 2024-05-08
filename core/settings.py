@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'shop',
     'catalog',
+    'order'
 ]
 
 MIDDLEWARE = [
@@ -139,7 +140,7 @@ SIMPLEUI_DEFAULT_THEME = 'simpleui.css'
 SIMPLEUI_INDEX = '#'
 # SIMPLEUI_LOGO = '/assets/mainpage/logo.png'
 SIMPLEUI_CONFIG = {
-    'system_keep': False,
+    'system_keep': True,
     'menus': [
         {
             'name': 'Каталог',
