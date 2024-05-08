@@ -6,10 +6,12 @@ class Product(models.Model):
     keywords = models.CharField(max_length=255, blank=True, null=True)
     meta_title = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Мета-заголовок'))
     meta_description = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Мета-описание'))
-    meta_image = models.FileField(upload_to='meta_images', blank=True, null=True, default='asets/icons/LOGO.svg')
+    meta_image = models.FileField(upload_to='meta_images', blank=True, null=True, default='assets/icons/LOGO.svg')
 
     name = models.CharField(max_length=255, verbose_name=_('Продукт'))
     description = models.TextField(blank=True, null=True, verbose_name='Описание')
+    tags = models.ManyToManyField('Tag', related_name='products')
+
     price_kgs = models.PositiveIntegerField(verbose_name=_('Цена в сомах'))
     price_kzt = models.PositiveIntegerField(verbose_name=_('Цена в тенге'))
     price_rub = models.PositiveIntegerField(verbose_name=_('Цена в рублях'))
@@ -70,7 +72,6 @@ class Color(models.Model):
 
 
 class Tag(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, related_name='tags')
     tag = models.CharField(max_length=255, verbose_name='Тэг')
 
     class Meta:

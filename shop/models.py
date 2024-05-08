@@ -28,7 +28,7 @@ class MainPageModel(SingletonModel):
     keywords = models.CharField(max_length=255, blank=True, null=True)
     meta_title = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Мета-заголовок'))
     meta_description = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Мета-описание'))
-    meta_image = models.FileField(upload_to='meta_images', blank=True, null=True, default='asets/icons/LOGO.svg')
+    meta_image = models.FileField(upload_to='meta_images', blank=True, null=True, default='assets/icons/LOGO.svg')
     title1 = models.CharField(max_length=255, verbose_name=_('Строка 1'))
     title2 = models.CharField(max_length=255, verbose_name=_('Строка 2'))
     title3 = models.CharField(max_length=255, verbose_name=_('Строка 3'))
@@ -36,7 +36,7 @@ class MainPageModel(SingletonModel):
     content_title = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Заголовок текста'))
     content_text = models.TextField(blank=True, null=True, verbose_name=_('Текст'))
     content_image = models.ImageField(upload_to='main_page', blank=True, null=True,
-                                      default='asets/mainpage/content_image.png', verbose_name=_('Изображение'))
+                                      default='assets/mainpage/content_image.png', verbose_name=_('Изображение'))
     bestsellers_tittle = models.CharField(max_length=255, blank=True, null=True,
                                           verbose_name=_('Бестселлеры заголовок'))
     discount_tittle = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Скидки заголовок'))

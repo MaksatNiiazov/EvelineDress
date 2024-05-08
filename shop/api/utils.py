@@ -23,18 +23,18 @@ def create_main_page_data(main_page):
     main_page.bestsellers_tittle = 'Наши бестселлеры'
     main_page.discount_tittle = 'Скидки'
     main_page.all_products_title = 'Все платья'
-    content_image_path = 'asets/mainpage/content_image.png'
+    content_image_path = 'assets/mainpage/content_image.png'
     with open(os.path.join(settings.BASE_DIR, content_image_path), 'rb') as content_image_file:
         main_page.content_image.save(os.path.basename(content_image_path), File(content_image_file), save=True)
 
 
 def create_main_page_slides(main_page):
-    slide_image_path1 = 'asets/mainpage/slider/default_slide1.png'
+    slide_image_path1 = 'assets/mainpage/slider/default_slide1.png'
     with open(os.path.join(settings.BASE_DIR, slide_image_path1), 'rb') as slide_image_file1:
         slide1 = MainPageSlide.objects.create(page=main_page)
         slide1.slide.save(os.path.basename(slide_image_path1), File(slide_image_file1), save=True)
 
-    slide_image_path2 = 'asets/mainpage/slider/default_slide2.png'
+    slide_image_path2 = 'assets/mainpage/slider/default_slide2.png'
     with open(os.path.join(settings.BASE_DIR, slide_image_path2), 'rb') as slide_image_file2:
         slide2 = MainPageSlide.objects.create(page=main_page)
         slide2.slide.save(os.path.basename(slide_image_path2), File(slide_image_file2), save=True)
@@ -51,7 +51,7 @@ def create_about_page_data(about_page):
     '''
     about_page.advantages_title = 'Почему Evelin - лучший выбор платьев на выпускной?'
     about_page.reviews_title = 'Чтобы еще больше убедиться в качестве наших товаров, посмотрите отзывы наших покупательниц'
-    content_image_path = 'asets/mainpage/content_image.png'
+    content_image_path = 'assets/mainpage/content_image.png'
     with open(os.path.join(settings.BASE_DIR, content_image_path), 'rb') as content_image_file:
         about_page.image.save(os.path.basename(content_image_path), File(content_image_file), save=True)
 
@@ -77,8 +77,8 @@ def create_about_page_data(about_page):
     )
 
     reviews = [
-        'asets/reviews/review1.png', 'asets/reviews/review2.png', 'asets/reviews/review3.png',
-        'asets/reviews/review4.png', 'asets/reviews/review5.png'
+        'assets/reviews/review1.png', 'assets/reviews/review2.png', 'assets/reviews/review3.png',
+        'assets/reviews/review4.png', 'assets/reviews/review5.png'
     ]
 
     for review_path in reviews:
@@ -101,7 +101,7 @@ def create_wholesaler_info_data(wholesaler_info):
     wholesaler_info.button_text = 'Связаться с менеджером'
     wholesaler_info.button_link = '#'
 
-    image_path = 'asets/wholesaler_product/product.png'
+    image_path = 'assets/wholesaler_product/product.png'
 
     with open(image_path, 'rb') as image_file:
         WholesalerProduct.objects.create(
@@ -127,22 +127,22 @@ def create_social_link_data(contact_info):
     social_links_data = [
         {
             'name': 'WhatsApp',
-            'logo': 'asets/sociallinks/whatsapp.svg',
+            'logo': 'assets/sociallinks/whatsapp.svg',
             'url': ''
         },
         {
             'name': 'Instagram',
-            'logo': 'asets/sociallinks/instagram.svg',
+            'logo': 'assets/sociallinks/instagram.svg',
             'url': ''
         },
         {
             'name': 'TikTok',
-            'logo': 'asets/sociallinks/tiktok.svg',
+            'logo': 'assets/sociallinks/tiktok.svg',
             'url': ''
         },
         {
             'name': 'Telegram',
-            'logo': 'asets/sociallinks/telegram.svg',
+            'logo': 'assets/sociallinks/telegram.svg',
             'url': ''
         },
 
