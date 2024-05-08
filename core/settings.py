@@ -137,7 +137,7 @@ SIMPLEUI_HOME_ACTION = False
 SIMPLEUI_HOME_QUICK = True
 SIMPLEUI_DEFAULT_THEME = 'simpleui.css'
 SIMPLEUI_INDEX = '#'
-SIMPLEUI_LOGO = '/static/icons/LOGO.svg'
+# SIMPLEUI_LOGO = '/asets/mainpage/logo.png'
 SIMPLEUI_CONFIG = {
     'system_keep': False,
     'menus': [
