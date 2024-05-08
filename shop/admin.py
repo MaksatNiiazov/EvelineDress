@@ -87,3 +87,9 @@ class ContactInfoAdmin(admin.ModelAdmin):
 admin.site.register(PaymentInfo)
 admin.site.register(DeliveryInfo)
 admin.site.register(SiteContent)
+admin.site.register(Address)
+admin.site.register(WorkSchedule)
+admin.site.register(Phone)
+admin.site.register(SocialLink)
+
+

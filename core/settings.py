@@ -16,7 +16,6 @@ from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ SECRET_KEY = 'django-insecure-x-d83$wp47uf&qj5)4j6*d7kpf&la%r&)%bibtrjh5$ll%0()-
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -78,7 +76,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -92,7 +89,6 @@ DATABASES = {
         'PORT': config('DB_PORT', cast=int),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -112,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -124,18 +119,132 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
 
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SIMPLEUI_HOME_INFO = False
+SIMPLEUI_HOME_ACTION = False
+SIMPLEUI_HOME_QUICK = True
+SIMPLEUI_DEFAULT_THEME = 'simpleui.css'
+SIMPLEUI_INDEX = '#'
+SIMPLEUI_LOGO = '/static/icons/LOGO.svg'
+SIMPLEUI_CONFIG = {
+    'system_keep': False,
+    'menus': [
+        {
+            'name': 'Каталог',
+            'icon': 'fa fa-book',
+            'models': [
+                {
+                    'name': 'Продукты',
+                    'icon': 'fa fa-box',
+                    'url': '/admin/catalog/product/'
+                },
+                {
+                    'name': 'Конфигурация',
+                    'icon': 'fa fa-gear',
+                    'models': [
+                        {
+                            'name': 'Размеры',
+                            'icon': 'fa fa-arrows-left-right-to-line',
+                            'url': '/admin/catalog/size/'
+                        },
+                        {
+                            'name': 'Цвета',
+                            'icon': 'fa fa-paint-roller',
+                            'url': '/admin/catalog/color/'
+                        },
+                    ]
+                }
+            ]
+        },
+        {
+            'name': 'Страницы',
+            'icon': 'fa fa-list',
+            'models': [
+                {
+                    'name': 'Главная страница',
+                    'icon': 'fa fa-crown',
+                    'url': '/admin/shop/mainpagemodel/'
+                },
+                {
+                    'name': 'О нас',
+                    'icon': 'fa fa-user',
+                    'url': '/admin/shop/aboutpagemodel/'
+                },
+                {
+                    'name': 'Информация',
+                    'icon': 'fa fa-circle-info',
+                    'models': [
+                        {
+                            'name': 'Оптовикам',
+                            'icon': 'fa fa-globe',
+                            'url': '/admin/shop/wholesalerinfo/'
+                        },
+                        {
+                            'name': 'Об оплате',
+                            'icon': 'fa fa-money-bill',
+                            'url': '/admin/shop/paymentinfo/'
+                        },
+                        {
+                            'name': 'Доставка',
+                            'icon': 'fa fa-truck',
+                            'url': '/admin/shop/deliveryinfo/'
+                        },
+
+                    ]
+                },
+                {
+                    'name': 'Контакты',
+                    'icon': 'fa fa-address-book',
+                    'models': [
+                        {
+                            'name': 'Адреса',
+                            'icon': 'fa fa-location-pin',
+                            'url': '/admin/shop/address/'
+                        },
+                        {
+                            'name': 'Телефоны',
+                            'icon': 'fa fa-phone',
+                            'url': '/admin/shop/phone/'
+                        },
+                        {
+                            'name': 'Ссылки на социальные медиа',
+                            'icon': 'fa fa-share-from-square',
+                            'url': '/admin/shop/sociallink/'
+                        },
+                        {
+                            'name': 'Рабочее время',
+                            'icon': 'fa fa-clock',
+                            'url': '/admin/shop/workschedule/'
+                        },
+                    ]
+                },
+
+            ]
+        },
+
+    ]
+}
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'entities': False,
+        'entities_latin': False,
+        'entities_greek': False,
+        'basicEntities': False,
+        'extraPlugins': '',
+        'removePlugins': 'all',
+        'toolbar': [],
+    },
+}

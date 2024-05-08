@@ -8,7 +8,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class SingletonModel(models.Model):
-
     class Meta:
         abstract = True
 
@@ -38,7 +37,8 @@ class MainPageModel(SingletonModel):
     content_text = models.TextField(blank=True, null=True, verbose_name=_('Текст'))
     content_image = models.ImageField(upload_to='main_page', blank=True, null=True,
                                       default='asets/mainpage/content_image.png', verbose_name=_('Изображение'))
-    bestsellers_tittle = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Бестселлеры заголовок'))
+    bestsellers_tittle = models.CharField(max_length=255, blank=True, null=True,
+                                          verbose_name=_('Бестселлеры заголовок'))
     discount_tittle = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Скидки заголовок'))
     all_products_title = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Все товары заголовок'))
 
@@ -107,8 +107,11 @@ class WholesalerInfo(SingletonModel):
     button_link = models.URLField(blank=True, null=True, verbose_name=_('Ссылка'))
 
     class Meta:
-        verbose_name = 'Поставщикам'
-        verbose_name_plural = 'Поставщикам'
+        verbose_name = 'Оптовикам'
+        verbose_name_plural = 'Оптовикам'
+
+    def __str__(self):
+        return "Информация оптовикам"
 
 
 class WholesalerProduct(models.Model):
@@ -126,10 +129,12 @@ class PaymentInfo(SingletonModel):
     text = models.TextField(blank=True, null=True, verbose_name=_('Текст'))
     additional_text = models.TextField(blank=True, null=True, verbose_name=_('Дополнительный текст'))
 
-
     class Meta:
         verbose_name = 'Об оплате'
         verbose_name_plural = 'Об оплате'
+
+    def __str__(self):
+        return self.title
 
 
 class DeliveryInfo(SingletonModel):
@@ -139,6 +144,9 @@ class DeliveryInfo(SingletonModel):
     class Meta:
         verbose_name = 'Доставка'
         verbose_name_plural = 'Доставка'
+
+    def __str__(self):
+        return self.title
 
 
 class ContactInfo(SingletonModel):
@@ -160,6 +168,9 @@ class Address(models.Model):
         verbose_name = 'Адрес'
         verbose_name_plural = 'Адреса'
 
+    def __str__(self):
+        return self.address
+
 
 class WorkSchedule(models.Model):
     contact_info = models.ForeignKey(ContactInfo, on_delete=models.PROTECT, related_name='work_schedules')
@@ -172,6 +183,9 @@ class WorkSchedule(models.Model):
         verbose_name = 'Рабочее время'
         verbose_name_plural = 'Рабочее время'
 
+    def __str__(self):
+        return f'{self.start} : {self.end}'
+
 
 class Phone(models.Model):
     contact_info = models.ForeignKey(ContactInfo, on_delete=models.PROTECT, related_name='phones')
@@ -180,6 +194,9 @@ class Phone(models.Model):
     class Meta:
         verbose_name = 'Телефон'
         verbose_name_plural = 'Телефоны'
+
+    def __str__(self):
+        return self.phone
 
 
 class SocialLink(models.Model):
@@ -191,6 +208,9 @@ class SocialLink(models.Model):
     class Meta:
         verbose_name = 'Соцсеть'
         verbose_name_plural = 'Соцсети'
+
+    def __str__(self):
+        return self.name
 
 
 class SiteContent(models.Model):

@@ -2,8 +2,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-# Create your models here.
-
 class Product(models.Model):
     keywords = models.CharField(max_length=255, blank=True, null=True)
     meta_title = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Мета-заголовок'))
