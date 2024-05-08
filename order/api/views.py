@@ -19,8 +19,6 @@ class OrderCreateView(generics.CreateAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
-
 class ChatLinksAPIView(generics.RetrieveAPIView):
     def get(self, request, *args, **kwargs):
         variant_id = self.kwargs.get('pk')
@@ -36,4 +34,11 @@ class ChatLinksAPIView(generics.RetrieveAPIView):
         telegram_link = f"https://t.me/{telegram_settings.link}?text=Product%3A%20{product_name}%0AColor%3A%20{color}%0ASize%3A%20{size}"
         whatsapp_link = f"https://wa.me/{whatsapp_settings.phone_number}?text=Product%3A%20{product_name}%0AColor%3A%20{color}%0ASize%3A%20{size}"
 
-        return Response({'telegram_link': telegram_link, 'whatsapp_link': whatsapp_link})
+        if telegram_settings and whatsapp_settings:
+            return Response({'telegram_link': telegram_link, 'whatsapp_link': whatsapp_link})
+        elif telegram_settings:
+            return Response({'telegram_link': telegram_link})
+        elif whatsapp_settings:
+            return Response({'whatsapp_link': whatsapp_link})
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
