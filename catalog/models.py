@@ -44,10 +44,13 @@ class Product(models.Model):
 class Characteristic(models.Model):
     key = models.CharField(max_length=255, null=True, blank=True, verbose_name=_('Ключ'))
     value = models.CharField(max_length=255, null=True, blank=True, verbose_name=_('Значение'))
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='characteristics')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='characteristics', verbose_name=_('Характеристика'))
 
     def __str__(self):
         return self.key
+    class Meta:
+        verbose_name = 'Характеристика'
+        verbose_name_plural = 'Характеристики'
 
 
 class Size(models.Model):
@@ -86,7 +89,7 @@ class Tag(models.Model):
 class Variant(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variants')
     color = models.ForeignKey(Color, on_delete=models.PROTECT)
-    size = models.ManyToManyField(Size, related_name='variants')
+    size = models.ManyToManyField(Size, related_name='variants', verbose_name=_('Размер'))
 
     class Meta:
         verbose_name = 'Вариант'
