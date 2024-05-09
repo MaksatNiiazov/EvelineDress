@@ -76,7 +76,7 @@ class InfoPageAPIView(APIView):
 class ContactInfoAPIView(APIView):
     def get(self, request):
         contact_info, created = ContactInfo.objects.get_or_create(pk=1)
-        if not contact_info:
+        if created:
             create_contact_info_data(contact_info)
         contact_info.save()
 

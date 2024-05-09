@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 from django.db import models
 
-from catalog.models import Variant
+from catalog.models import Variant, Size
 from shop.models import SingletonModel
 
 
@@ -15,6 +15,7 @@ class Order(models.Model):
     customer_phone = models.CharField(max_length=20)
 
     variant = models.ForeignKey(Variant, on_delete=models.CASCADE)
+    size = models.ForeignKey(Size, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

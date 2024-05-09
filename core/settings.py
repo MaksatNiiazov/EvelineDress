@@ -146,7 +146,7 @@ SIMPLEUI_DEFAULT_THEME = 'simpleui.css'
 SIMPLEUI_INDEX = '#'
 # SIMPLEUI_LOGO = os.path.join(BASE_DIR, '')
 SIMPLEUI_CONFIG = {
-    'system_keep': False,
+    'system_keep': True,
     'menus': [
         {
             'name': 'Каталог',
@@ -221,25 +221,11 @@ SIMPLEUI_CONFIG = {
                     'icon': 'fa fa-address-book',
                     'models': [
                         {
-                            'name': 'Адреса',
-                            'icon': 'fa fa-location-pin',
-                            'url': '/admin/shop/address/'
-                        },
-                        {
-                            'name': 'Телефоны',
+                            'name': 'Контактны',
                             'icon': 'fa fa-phone',
-                            'url': '/admin/shop/phone/'
+                            'url': '/admin/shop/contactinfo/'
                         },
-                        {
-                            'name': 'Ссылки на социальные медиа',
-                            'icon': 'fa fa-share-from-square',
-                            'url': '/admin/shop/sociallink/'
-                        },
-                        {
-                            'name': 'Рабочее время',
-                            'icon': 'fa fa-clock',
-                            'url': '/admin/shop/workschedule/'
-                        },
+
                     ]
                 },
 

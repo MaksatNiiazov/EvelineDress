@@ -83,7 +83,7 @@ class Tag(models.Model):
 class Variant(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variants')
     color = models.ForeignKey(Color, on_delete=models.PROTECT)
-    size = models.ForeignKey(Size, on_delete=models.PROTECT)
+    size = models.ManyToManyField(Size, related_name='variants')
 
     class Meta:
         verbose_name = 'Вариант'

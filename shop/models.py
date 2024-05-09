@@ -178,7 +178,7 @@ class Address(models.Model):
 class WorkSchedule(models.Model):
     contact_info = models.ForeignKey(ContactInfo, on_delete=models.PROTECT, related_name='work_schedules')
     text = models.CharField(max_length=255, blank=True, null=True, help_text='Дни когда это время актуально (можно '
-                                                                             'оставить пустым)')
+                                                                             'оставить пустым)', verbose_name='Рабочее время')
     start = models.TimeField(default=time(10, 0, 0).replace(second=0, microsecond=0))
     end = models.TimeField(default=time(10, 0, 0).replace(second=0, microsecond=0))
 

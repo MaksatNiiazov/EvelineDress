@@ -11,7 +11,7 @@ class CharacteristicSerializer(serializers.ModelSerializer):
 class SizeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Size
-        fields = ('size',)
+        fields = ('id', 'size',)
 
 
 class ColorSerializer(serializers.ModelSerializer):
@@ -34,7 +34,7 @@ class VariantMediaSerializer(serializers.ModelSerializer):
 
 class VariantSerializer(serializers.ModelSerializer):
     color = ColorSerializer()
-    size = SizeSerializer()
+    size = SizeSerializer(many=True)
     media = VariantMediaSerializer(many=True)
 
     class Meta:
