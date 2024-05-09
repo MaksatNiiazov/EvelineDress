@@ -65,6 +65,9 @@ class MainPageSlide(models.Model):
         verbose_name = 'Слайд'
         verbose_name_plural = 'Слыйды'
 
+    def __str__(self):
+        return 'Слайд'
+
 
 class AboutPageModel(SingletonModel):
     title = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Заголовок'))

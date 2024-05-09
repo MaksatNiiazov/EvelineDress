@@ -111,9 +111,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Bishkek'
 
 USE_I18N = True
 
@@ -139,13 +139,12 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 SIMPLEUI_HOME_INFO = False
 SIMPLEUI_HOME_ACTION = False
 SIMPLEUI_HOME_QUICK = True
 SIMPLEUI_DEFAULT_THEME = 'simpleui.css'
 SIMPLEUI_INDEX = '#'
-# SIMPLEUI_LOGO = '/assets/mainpage/logo.png'
+SIMPLEUI_LOGO = os.path.join(BASE_DIR, '')
 SIMPLEUI_CONFIG = {
     'system_keep': False,
     'menus': [
@@ -171,6 +170,11 @@ SIMPLEUI_CONFIG = {
                             'name': 'Цвета',
                             'icon': 'fa fa-paint-roller',
                             'url': '/admin/catalog/color/'
+                        },
+                        {
+                            'name': 'Тэги',
+                            'icon': 'fa fa-tag',
+                            'url': '/admin/catalog/tag/'
                         },
                     ]
                 }
