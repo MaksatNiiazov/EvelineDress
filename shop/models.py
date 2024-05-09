@@ -166,6 +166,7 @@ class ContactInfo(SingletonModel):
 class Address(models.Model):
     contact_info = models.ForeignKey(ContactInfo, on_delete=models.PROTECT, related_name='addresses')
     address = models.TextField(verbose_name=_('Адрес'))
+    map_link = models.URLField(blank=True, null=True, verbose_name=_('Ссылка на карту'))
 
     class Meta:
         verbose_name = 'Адрес'
