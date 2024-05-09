@@ -238,7 +238,7 @@ SIMPLEUI_CONFIG = {
                 {
                     'name': 'Заказы',
                     'icon': 'fa fa-star',
-                    'url': '/admin/shop/mainpagemodel/'
+                    'url': '/admin/order/order/'
                 },
                 {
                     'name': 'Месенджеры',
