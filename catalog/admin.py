@@ -47,5 +47,6 @@ class ProductAdmin(NestedModelAdmin):
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Size)
 admin.site.register(Color)
+admin.site.register(Tag)
 admin.site.register(Variant)
 admin.site.register(VariantMedia)
