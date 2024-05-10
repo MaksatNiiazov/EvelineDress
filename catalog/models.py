@@ -95,6 +95,9 @@ class Variant(models.Model):
         verbose_name = 'Вариант'
         verbose_name_plural = 'Варианты'
 
+    def __str__(self):
+        return self.product
+
 
 class VariantMedia(models.Model):
     variant = models.ForeignKey(Variant, on_delete=models.CASCADE, related_name='media')
