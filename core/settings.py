@@ -59,11 +59,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'core.urls'
+TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -148,7 +149,8 @@ SIMPLEUI_HOME_ACTION = False
 SIMPLEUI_HOME_QUICK = True
 SIMPLEUI_DEFAULT_THEME = 'simpleui.css'
 SIMPLEUI_INDEX = '#'
-# SIMPLEUI_LOGO = os.path.join(BASE_DIR, '')
+# SIMPLEUI_LOGO = 'logo.png'
+# print(SIMPLEUI_LOGO)
 SIMPLEUI_CONFIG = {
     'system_keep': False,
     'menus': [
