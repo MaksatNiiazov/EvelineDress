@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from catalog.models import Product, Size, Color, Tag, Variant, VariantMedia, Characteristic
+from order.models import TelegramSettings, WhatsAppSettings
 
 
 class CharacteristicSerializer(serializers.ModelSerializer):
@@ -66,8 +67,17 @@ class ProductSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True)
     variants = VariantSerializer(many=True)
     characteristics = CharacteristicSerializer(many=True)
-
+    links = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
         fields = '__all__'
+
+    def get_links(self, obj):
+        telegram_settings = TelegramSettings.objects.first()
+        whatsapp_settings = WhatsAppSettings.objects.first()
+        telegram_link = f"https://t.me/{telegram_settings.link}?"
+        whatsapp_link = f"https://wa.me/{whatsapp_settings.phone_number}?"
+        return {'telegram': telegram_link, 'whatsapp': whatsapp_link}
+
+

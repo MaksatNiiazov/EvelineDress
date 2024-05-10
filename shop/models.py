@@ -104,6 +104,7 @@ class ReviewModel(models.Model):
 
 
 class WholesalerInfo(SingletonModel):
+    title = models.CharField(max_length=255, verbose_name=_('Заголовок'))
     text = models.TextField(blank=True, null=True, verbose_name=_('Текст'))
     additional_text = models.TextField(blank=True, null=True, verbose_name=_('Дополнительный текст'))
     button_text = models.CharField(max_length=100, verbose_name=_('Текст кнопки'))
