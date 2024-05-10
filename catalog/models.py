@@ -96,7 +96,7 @@ class Variant(models.Model):
         verbose_name_plural = 'Варианты'
 
     def __str__(self):
-        return self.product
+        return f'{self.product.name}'
 
 
 class VariantMedia(models.Model):
