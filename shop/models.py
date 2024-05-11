@@ -37,10 +37,12 @@ class MainPageModel(SingletonModel):
     content_text = models.TextField(blank=True, null=True, verbose_name=_('Текст'))
     content_image = models.ImageField(upload_to='main_page', blank=True, null=True,
                                       default='assets/mainpage/content_image.png', verbose_name=_('Изображение'))
-    bestsellers_tittle = models.CharField(max_length=255, blank=True, null=True,
-                                          verbose_name=_('Бестселлеры заголовок'))
+    bestsellers_tittle = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Бестселлеры заголовок'))
+    bestsellers_gif = models.FileField(upload_to='gifs', verbose_name=_('Гифка'), blank=True, null=True)
     discount_tittle = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Скидки заголовок'))
+    discount_gif = models.FileField(upload_to='gifs', verbose_name=_('Гифка'), blank=True, null=True)
     all_products_title = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Все товары заголовок'))
+    all_products_gif = models.FileField(upload_to='gifs', verbose_name=_('Гифка'), blank=True, null=True)
 
     class Meta:
         verbose_name = 'Контент главной страницы'
