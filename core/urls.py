@@ -2,10 +2,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
+
 from rest_framework import permissions
 
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+
+from shop.api.views import CustomLogoutView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -21,6 +25,8 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path('admin/logout/', CustomLogoutView.as_view(), name='logout'),
+
     path('admin/', admin.site.urls),
     path('catalog/', include('catalog.urls')),
     path('shop/', include('shop.urls')),

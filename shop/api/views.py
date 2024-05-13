@@ -1,3 +1,6 @@
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+from django.views import View
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from shop.api.utils import create_main_page_data, create_main_page_slides, create_about_page_data, \
@@ -85,3 +88,9 @@ class ContactInfoAPIView(APIView):
         return Response({
             'contact_info': serializer.data,
         })
+
+
+class CustomLogoutView(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect('/admin/')
